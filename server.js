@@ -2,6 +2,7 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 const mongoose = require("mongoose");
 const userRoute = require("./routes/users");
+const poleRoute = require("./routes/poles");
 var app = express();
 
 // app.use(logger('dev'));
@@ -21,6 +22,7 @@ app.get("/", function (req, res) {
   res.send({ status: "aziz ya kalb" });
 });
 app.use("/user",userRoute);
+app.use("/pole",poleRoute);
 app.listen(3000,()=>{console.log("server listening to requests on port 3000")})
 
 module.exports = app;

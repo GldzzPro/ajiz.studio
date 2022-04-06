@@ -29,8 +29,11 @@ const User = new Schema(
     default: "local",
   },
   pole: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "poles"
+       id:{
+             type: mongoose.Schema.Types.ObjectId,
+             ref: "Pole"
+       },
+       name: String,
   },
 // many to many relationship 
   projects: {

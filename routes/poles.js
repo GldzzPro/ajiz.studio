@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Pole = require("../models/poles");
+var Pole = require("../models/pole");
 router.route('/')
 .get((req, res)=>{
   Pole.find((err, foundPole)=>{
@@ -8,13 +8,11 @@ router.route('/')
   });
 })
 .post((req, res)=>{
-  const Pole = new Pole({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
+  const pole = new Pole({
+      name: req.body.name,
   })
-  Pole.save((err)=>{
-    (!err) ? res.send(`Successfully added a new user at ${user.created_at}.`) : res.send(err);
+  pole.save((err)=>{
+    (!err) ? res.send(`Successfully added a new pole at ${pole.createdAt}.`) : res.send(err);
   });
 });
 
