@@ -10,26 +10,29 @@ router.route('/')
   });
 })
 .post((req, res)=>{
+  const user = new User({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    pole :{
+      id : null,
+      name : ""
+    }
+})
   Pole.findOne({name: req.body.pole}, (err, foundPole)=>{
     if(foundPole){
        const{_id,name} =foundPole ; 
-       const user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        pole :{
-          id : _id,
-          name : name
-        }
-    })
-    user.save((err)=>{
-      (!err) ? res.send(`Successfully added a new user at ${user}.`) : res.send(err);
-    });
+       user.pole.id = _id ;
+       user.pole.name = name ;
       }
     else{
       res.send("No pole matching that name was found.");
     } 
   });
+  
+user.save((err)=>{
+  (!err) ? res.send(`Successfully added a new user at ${user}.`) : res.send(err);
+});
 });
 
 module.exports = router;

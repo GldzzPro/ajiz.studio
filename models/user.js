@@ -8,6 +8,7 @@ const Session = new Schema({
     type: String,
     default: "",
   },
+  
 });
 
 const User = new Schema(
